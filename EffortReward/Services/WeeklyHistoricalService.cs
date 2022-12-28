@@ -14,5 +14,17 @@ namespace EffortReward.Services
         public async Task<List<WeeklyHistory>> All() { 
             return await this._context.WeeklyHistory.ToListAsync();
         }
+
+        public async Task<WeeklyHistory?> FindOne(int id)
+        {
+            var history = await this._context.WeeklyHistory.FindAsync(id);
+            
+            if (history == null)
+            {
+                return null;
+            }
+
+            return history;
+        }
     }
 }
