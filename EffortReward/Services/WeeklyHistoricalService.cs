@@ -34,7 +34,6 @@ namespace EffortReward.Services
 
             this._context.Add(history);
             return await this._context.SaveChangesAsync();
-
         }
 
         public async Task<ActionResult<int>> Update(WeeklyHistory history)
@@ -46,6 +45,12 @@ namespace EffortReward.Services
         public bool IsHistoryExisting(int id)
         {
             return (this._context.WeeklyHistory?.Any(item => item.Id == id)).GetValueOrDefault();
+        }
+
+        public async Task<int> Destroy(WeeklyHistory history)
+        {
+            this._context.Remove(history);
+            return await this._context.SaveChangesAsync();
         }
     }
 }
