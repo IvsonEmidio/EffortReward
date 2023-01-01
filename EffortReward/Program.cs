@@ -1,7 +1,9 @@
 
 using EffortReward.Models;
 using EffortReward.Services;
+using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace EffortReward
 {
@@ -16,7 +18,32 @@ namespace EffortReward
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+
+                    Version = "1.0.0",
+                    Title = "EffortReward API",
+                    Description = "The API that help you to be the best version of you!",
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                    {
+
+                        Email = "contato@Ivsonemidio.com.br"
+                    },
+
+
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense
+                    {
+                        Name = "License: MIT",
+                    }
+                });
+
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
+
+
             builder.Services.AddDbContext<WeeklyHistoryContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("pgsql"));
