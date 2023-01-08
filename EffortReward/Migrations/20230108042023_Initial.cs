@@ -13,10 +13,26 @@ namespace EffortReward.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Effort",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Description = table.Column<string>(type: "varchar(200)", nullable: false),
+                    RewardPoints = table.Column<int>(type: "integer", nullable: false),
+                    QntRecovered = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Effort", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "WeeklyHistory",
                 columns: table => new
                 {
-                
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -40,6 +56,9 @@ namespace EffortReward.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Effort");
+
             migrationBuilder.DropTable(
                 name: "WeeklyHistory");
         }
