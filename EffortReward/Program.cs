@@ -44,12 +44,13 @@ namespace EffortReward
             });
 
 
-            builder.Services.AddDbContext<WeeklyHistoryContext>(options =>
+            builder.Services.AddDbContext<DatabaseContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("pgsql"));
             });
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<WeeklyHistoricalService>();
+            builder.Services.AddScoped<EffortService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

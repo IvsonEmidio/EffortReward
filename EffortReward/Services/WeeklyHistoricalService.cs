@@ -7,8 +7,8 @@ namespace EffortReward.Services
 {
     public class WeeklyHistoricalService
     {
-        private readonly WeeklyHistoryContext _context;
-        public WeeklyHistoricalService(WeeklyHistoryContext context)
+        private readonly DatabaseContext _context;
+        public WeeklyHistoricalService(DatabaseContext context)
         {
             _context = context;
         }
@@ -38,7 +38,7 @@ namespace EffortReward.Services
 
         public async Task<ActionResult<int>> Update(WeeklyHistory history)
         {
-            this._context.Entry(history).State= EntityState.Modified;
+            this._context.Entry(history).State = EntityState.Modified;
             return await this._context.SaveChangesAsync();
         }
 
