@@ -1,7 +1,7 @@
 ﻿using EffortReward.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EffortReward.Models
+namespace EffortReward.Data
 {
     public class DatabaseContext : DbContext
     {
@@ -9,5 +9,7 @@ namespace EffortReward.Models
         //Generic Entities
         public DbSet<WeeklyHistory> WeeklyHistory { get; set; }
         public DbSet<Effort> Effort { get; set; }
+        
+        public DbSet<Wallet> Wallet { get; set; }
     }
 }
