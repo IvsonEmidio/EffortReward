@@ -1,5 +1,5 @@
 
-using EffortReward.Models;
+using EffortReward.Data;
 using EffortReward.Services;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +51,7 @@ namespace EffortReward
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<WeeklyHistoricalService>();
             builder.Services.AddScoped<EffortService>();
+            builder.Services.AddScoped<WalletService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

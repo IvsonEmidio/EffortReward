@@ -1,5 +1,5 @@
 ﻿using EffortReward.Data.Entities;
-using EffortReward.Models;
+using EffortReward.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
